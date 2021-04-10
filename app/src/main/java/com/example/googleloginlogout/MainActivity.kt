@@ -1,9 +1,12 @@
 package com.example.googleloginlogout
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.CalendarContract
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -26,17 +29,20 @@ class MainActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
 
         logout.setOnClickListener {
             mGoogleSignInClient.signOut().addOnCompleteListener {
-                val intent= Intent(this, LoginScreen::class.java)
-                Toast.makeText(this,"Logging Out",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginScreen::class.java)
+                Toast.makeText(this, "Logging Out", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
                 finish()
             }
         }
 
+      
     }
 }
+
+
